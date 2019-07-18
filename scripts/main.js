@@ -77,24 +77,24 @@ const studentContainer = document.querySelector("#container")
 
 //* STEP 2 - create HTML representation of data
 
-const createStudentComponent = (name, subject, info, score) => {
+const createStudentComponent = (student) => {
     return `
         <div class="student">
-            <h1 class="xx-large passing">${name}</h1>
-            <section class="bordered dashed section--padded">${subject}</section>
-            <aside class="pushRight">${info}</aside>
-            <aside>Current Score: ${score}</aside>
+            <h1 class="xx-large passing">${student.name}</h1>
+            <section class="bordered dashed section--padded">${student.subject}</section>
+            <aside class="pushRight">${student.info}</aside>
+            <aside>Current Score: ${student.score}</aside>
         </div>
     `
 }
 
-const createFailingStudentComponent = (name, subject, info, score) => {
+const createFailingStudentComponent = (student) => {
     return `
         <div class="student">
-            <h1>${name}</h1>
-            <section>${subject}</section>
-            <aside>${info}</aside>
-            <aside>Current Score: ${score}</aside>
+            <h1 class="failing">${student.name}</h1>
+            <section>${student.subject}</section>
+            <aside>${student.info}</aside>
+            <aside>Current Score: ${student.score}</aside>
         </div>
     `
 }
@@ -103,10 +103,10 @@ const createFailingStudentComponent = (name, subject, info, score) => {
 //* STEP 4 - Inject into html
 students.forEach(student => {
     if (student.score >= 60 ) {
-        const htmlRep = createStudentComponent( student.name, student.subject, student.info, student.score);
+        const htmlRep = createStudentComponent( student);
         studentContainer.innerHTML += htmlRep;
     } else {
-        const htmlRep = createFailingStudentComponent( student.name, student.subject, student.info, student.score);
+        const htmlRep = createFailingStudentComponent( student);
         studentContainer.innerHTML += htmlRep;
     }
 })
